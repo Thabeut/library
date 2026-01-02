@@ -4,6 +4,9 @@ import EnterButton from "../../components/EnterButton/EnterButton";
 import PlatformAssistant from "../../components/PlatformAssistant/PlatformAssistant";
 import type { Section } from "../../components/PlatformAssistant/PlatformAssistant";
 import Book from "../../components/Book/Book";
+import BookSelection from "../../components/BookSelection/BookSelection";
+import type { Book as BookType } from "../../mocks/books";
+import { books } from "../../mocks/books";
 import "./Home.css";
 import titleImg from "../../assets/imgs/home/home-title.png";
 import introVideo from "../../assets/vids/intro.mp4";
@@ -25,6 +28,8 @@ const Home: React.FC = () => {
   const [currentScene, setCurrentScene] = useState(0);
   const [showBook, setShowBook] = useState(false);
   const [isQuitting, setIsQuitting] = useState(false);
+  const [showBookSelection, setShowBookSelection] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<BookType | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -160,7 +165,7 @@ const Home: React.FC = () => {
       scene1Video.style.opacity = "1";
       scene1Video.loop = false;
       scene1Video.currentTime = 0;
-      scene1Video.playbackRate = 0.7;
+      scene1Video.playbackRate = 0.8;
 
       scene1Video.play().then(() => {
         gsap.to(scene1Video, {
@@ -190,6 +195,19 @@ const Home: React.FC = () => {
 
   const handlePlatformAssistantComplete = () => {
     setShowPlatformAssistant(false);
+    const scene1Video = scene1VideoRef.current;
+
+    if (scene1Video) {
+      scene1Video.pause();
+      scene1Video.style.display = "block";
+      scene1Video.style.opacity = "1";
+      setShowBookSelection(true);
+    }
+  };
+
+  const handleBookSelect = (book: BookType) => {
+    setSelectedBook(book);
+    setShowBookSelection(false);
     const scene2Video = scene2VideoRef.current;
     const scene1Video = scene1VideoRef.current;
 
@@ -293,64 +311,34 @@ const Home: React.FC = () => {
   };
 
   const handleBookQuit = () => {
-    setShowBook(false);
-    setIsQuitting(true);
     const scene2Video = scene2VideoRef.current;
+    const scene1Video = scene1VideoRef.current;
+
+    setShowBook(false);
+    setSelectedBook(null);
 
     if (scene2Video) {
-      const blinkOverlay = blinkOverlayRef.current;
-
-      if (blinkOverlay) {
-        gsap.to(blinkOverlay, {
-          opacity: 1,
-          duration: 0.15,
-          ease: "power2.out",
-          onComplete: () => {
-            scene2Video.style.display = "block";
-            scene2Video.style.opacity = "0";
-            scene2Video.loop = false;
-            scene2Video.currentTime = 0;
-            scene2Video.playbackRate = 1;
-
-            scene2Video.play().then(() => {
-              gsap.to(blinkOverlay, {
-                opacity: 0,
-                duration: 0.15,
-                ease: "power2.in",
-                delay: 0.1,
-                onComplete: () => {
-                  gsap.to(scene2Video, {
-                    opacity: 1,
-                    duration: 0.5,
-                    ease: "power2.out",
-                  });
-                },
-              });
-            });
-
-            scene2Video.onended = handleScene2End;
-            setCurrentScene(2);
-          },
-        });
-      } else {
-        scene2Video.style.display = "block";
-        scene2Video.style.opacity = "0";
-        scene2Video.loop = false;
-        scene2Video.currentTime = 0;
-        scene2Video.playbackRate = 1;
-
-        scene2Video.play().then(() => {
-          gsap.to(scene2Video, {
-            opacity: 1,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        });
-
-        scene2Video.onended = handleScene2End;
-        setCurrentScene(2);
-      }
+      gsap.to(scene2Video, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.in",
+        onComplete: () => {
+          scene2Video.style.display = "none";
+          scene2Video.pause();
+        },
+      });
     }
+
+    if (scene1Video) {
+      scene1Video.style.display = "block";
+      scene1Video.style.opacity = "1";
+      scene1Video.pause();
+      setCurrentScene(1);
+    }
+
+    setTimeout(() => {
+      setShowBookSelection(true);
+    }, 500);
   };
 
   const handleQuitLibrary = () => {
@@ -443,7 +431,7 @@ const Home: React.FC = () => {
             <img
               ref={titleRef}
               src={titleImg}
-              alt="The Hall of Zero Limits"
+              alt="The Library of Knowledge"
               className="home-title"
             />
             <div ref={enterButtonRef}>
@@ -458,7 +446,10 @@ const Home: React.FC = () => {
           onComplete={handlePlatformAssistantComplete}
         />
       )}
-      {showBook && <Book onQuit={handleBookQuit} />}
+      {showBookSelection && (
+        <BookSelection books={books} onBookSelect={handleBookSelect} />
+      )}
+      {showBook && <Book bookData={selectedBook} onQuit={handleBookQuit} />}
     </div>
   );
 };

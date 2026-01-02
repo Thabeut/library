@@ -9,23 +9,23 @@
 
 .book-quit-btn {
   position: fixed;
-  top: 2rem;
-  left: 2rem;
+  top: 32px;
+  left: 32px;
   z-index: 2000;
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px;
   background: rgba(74, 47, 16, 0.9);
   color: #fff;
   border: 2px solid rgba(74, 47, 16, 0.6);
   border-radius: 8px;
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .book-quit-btn:hover {
@@ -67,7 +67,7 @@
 }
 
 .book-content.page-content {
-  padding: 3rem;
+  padding: 48px;
   text-align: left;
   color: #2a2a2a;
   display: flex;
@@ -80,51 +80,51 @@
 
 .page-header {
   font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: rgba(74, 47, 16, 0.8);
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   border-bottom: 2px solid rgba(74, 47, 16, 0.3);
-  padding-bottom: 0.5rem;
+  padding-bottom: 8px;
 }
 
 .page-text {
   flex: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .page-footer {
   position: absolute;
-  bottom: 1rem;
-  right: 1.5rem;
+  bottom: 16px;
+  right: 24px;
   font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
+  font-size: 14px;
   color: rgba(74, 47, 16, 0.6);
   font-weight: 500;
 }
 
 .book-content h2 {
   font-family: "Inter", sans-serif;
-  font-size: 1.75rem;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
+  margin-bottom: 16px;
+  margin-top: 8px;
   color: #1a1a1a;
 }
 
 .book-content p {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.7;
   color: #3a3a3a;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .book-tip-box {
-  margin-top: 1.5rem;
-  padding: 1.25rem;
+  margin-top: 24px;
+  padding: 20px;
   background: rgba(74, 47, 16, 0.1);
   border-left: 4px solid rgba(74, 47, 16, 0.6);
   border-radius: 4px;
@@ -132,13 +132,13 @@
 
 .book-tip-text {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 15px;
   color: #2a2a2a;
 }
 
 .book-quiz-box {
-  margin-top: 1.5rem;
-  padding: 1.5rem;
+  margin-top: 24px;
+  padding: 24px;
   background: rgba(74, 47, 16, 0.08);
   border-radius: 8px;
   border: 2px solid rgba(74, 47, 16, 0.2);
@@ -146,19 +146,19 @@
 
 .book-quiz-question {
   font-weight: 600;
-  margin-bottom: 1.25rem;
+  margin-bottom: 20px;
   color: #1a1a1a;
-  font-size: 1.05rem;
+  font-size: 17px;
 }
 
 .book-quiz-options {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .book-quiz-option {
-  padding: 0.75rem 1rem;
+  padding: 12px 16px;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(74, 47, 16, 0.3);
   border-radius: 4px;
@@ -196,7 +196,7 @@
 }
 
 .book-video-container {
-  margin-top: 1.5rem;
+  margin-top: 24px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -214,9 +214,36 @@
 }
 
 .book-video-description {
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: 16px;
+  font-size: 14px;
   color: rgba(74, 47, 16, 0.8);
   font-style: italic;
   text-align: center;
+}
+
+.book-quote-box {
+  margin-top: 32px;
+  padding: 32px;
+  background: rgba(74, 47, 16, 0.08);
+  border-left: 4px solid rgba(74, 47, 16, 0.6);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.book-quote-text {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.8;
+  color: #2a2a2a;
+  margin: 0 0 24px 0;
+}
+
+.book-quote-author {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(74, 47, 16, 0.8);
+  margin: 0;
+  text-align: right;
 }
