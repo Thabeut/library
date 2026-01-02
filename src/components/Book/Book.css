@@ -1,0 +1,222 @@
+.book-container {
+  height: 100vh;
+  background-image: url("https://media.istockphoto.com/id/491606503/photo/overhead-view-of-light-brown-wooden-table.jpg?s=612x612&w=0&k=20&c=xYvhXlzscGiwIK5q9g8UcgTtkq3i7ErMwQo5EbqGuk8=");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.book-quit-btn {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 2000;
+  padding: 0.75rem 1.5rem;
+  background: rgba(74, 47, 16, 0.9);
+  color: #fff;
+  border: 2px solid rgba(74, 47, 16, 0.6);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-quit-btn:hover {
+  background: rgba(74, 47, 16, 1);
+  border-color: rgba(74, 47, 16, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.book-quit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.book-wrapper {
+  top: 15%;
+  position: relative;
+  z-index: 1;
+}
+
+.book-flip.html-book {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  display: block;
+  z-index: 100;
+  background-size: cover;
+}
+
+.book-page.page {
+  background: linear-gradient(
+    135deg,
+    rgba(200, 180, 150, 0.95) 0%,
+    rgba(180, 160, 140, 0.95) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.book-content.page-content {
+  padding: 3rem;
+  text-align: left;
+  color: #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+.page-header {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(74, 47, 16, 0.8);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(74, 47, 16, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.page-text {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  color: rgba(74, 47, 16, 0.6);
+  font-weight: 500;
+}
+
+.book-content h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  color: #1a1a1a;
+}
+
+.book-content p {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #3a3a3a;
+  margin-bottom: 1rem;
+}
+
+.book-tip-box {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(74, 47, 16, 0.1);
+  border-left: 4px solid rgba(74, 47, 16, 0.6);
+  border-radius: 4px;
+}
+
+.book-tip-text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #2a2a2a;
+}
+
+.book-quiz-box {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(74, 47, 16, 0.08);
+  border-radius: 8px;
+  border: 2px solid rgba(74, 47, 16, 0.2);
+}
+
+.book-quiz-question {
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #1a1a1a;
+  font-size: 1.05rem;
+}
+
+.book-quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.book-quiz-option {
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(74, 47, 16, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Inter", sans-serif;
+  color: #2a2a2a;
+}
+
+.book-quiz-option:hover {
+  background: rgba(74, 47, 16, 0.1);
+  border-color: rgba(74, 47, 16, 0.5);
+}
+
+.book-quiz-option-correct {
+  background: rgba(34, 197, 94, 0.2) !important;
+  border-color: rgba(34, 197, 94, 0.6) !important;
+  color: rgba(22, 101, 52, 0.9) !important;
+  font-weight: 600;
+  cursor: default;
+}
+
+.book-quiz-option-incorrect {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  color: rgba(153, 27, 27, 0.9) !important;
+  font-weight: 600;
+  cursor: default;
+}
+
+.book-quiz-option-correct:hover,
+.book-quiz-option-incorrect:hover {
+  background: inherit !important;
+  border-color: inherit !important;
+}
+
+.book-video-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(74, 47, 16, 0.3);
+  background: #000;
+}
+
+.book-video-description {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(74, 47, 16, 0.8);
+  font-style: italic;
+  text-align: center;
+}
