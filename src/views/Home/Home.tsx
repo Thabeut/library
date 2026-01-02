@@ -8,7 +8,7 @@ import BookSelection from "../../components/BookSelection/BookSelection";
 import type { Book as BookType } from "../../mocks/books";
 import { books } from "../../mocks/books";
 import "./Home.css";
-import titleImg from "../../assets/imgs/home/home-title.png";
+import titleImg from "../../assets/imgs/home-title.png";
 import introVideo from "../../assets/vids/intro.mp4";
 import scene1Video from "../../assets/vids/scene1.mp4";
 import scene2Video from "../../assets/vids/scene2.mp4";

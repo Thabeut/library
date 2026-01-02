@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "./Loader.css";
-import titleImg from "../../assets/imgs/loader/loader-title.png";
+import titleImg from "../../assets/imgs/loader-title.png";
 
 const Loader: React.FC = () => {
   const [progress, setProgress] = useState(0);
