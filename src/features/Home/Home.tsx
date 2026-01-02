@@ -24,6 +24,7 @@ const Home: React.FC = () => {
   const [showPlatformAssistant, setShowPlatformAssistant] = useState(false);
   const [currentScene, setCurrentScene] = useState(0);
   const [showBook, setShowBook] = useState(false);
+  const [isQuitting, setIsQuitting] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -203,7 +204,7 @@ const Home: React.FC = () => {
       });
 
       scene2Video.style.display = "block";
-      scene2Video.style.opacity = "0";
+      scene2Video.style.opacity = "0.8";
       scene2Video.loop = false;
       scene2Video.currentTime = 0;
       scene2Video.playbackRate = 1;
@@ -222,34 +223,182 @@ const Home: React.FC = () => {
   };
 
   const handleScene2End = () => {
-    const blinkOverlay = blinkOverlayRef.current;
+    if (isQuitting) {
+      const blinkOverlay = blinkOverlayRef.current;
+      const scene2Video = scene2VideoRef.current;
+
+      if (blinkOverlay) {
+        gsap.to(blinkOverlay, {
+          opacity: 1,
+          duration: 0.15,
+          ease: "power2.out",
+          onComplete: () => {
+            if (scene2Video) {
+              scene2Video.style.display = "none";
+            }
+            gsap.to(blinkOverlay, {
+              opacity: 0,
+              duration: 0.15,
+              ease: "power2.in",
+              delay: 0.1,
+              onComplete: () => {
+                setShowBook(true);
+                setTimeout(() => {
+                  handleQuitLibrary();
+                }, 500);
+              },
+            });
+          },
+        });
+      } else {
+        if (scene2Video) {
+          scene2Video.style.display = "none";
+        }
+        setShowBook(true);
+        setTimeout(() => {
+          handleQuitLibrary();
+        }, 500);
+      }
+    } else {
+      const blinkOverlay = blinkOverlayRef.current;
+      const scene2Video = scene2VideoRef.current;
+
+      if (blinkOverlay) {
+        gsap.to(blinkOverlay, {
+          opacity: 1,
+          duration: 0.15,
+          ease: "power2.out",
+          onComplete: () => {
+            if (scene2Video) {
+              scene2Video.style.display = "none";
+            }
+            gsap.to(blinkOverlay, {
+              opacity: 0,
+              duration: 0.15,
+              ease: "power2.in",
+              delay: 0.1,
+              onComplete: () => {
+                setShowBook(true);
+              },
+            });
+          },
+        });
+      } else {
+        if (scene2Video) {
+          scene2Video.style.display = "none";
+        }
+        setShowBook(true);
+      }
+    }
+  };
+
+  const handleBookQuit = () => {
+    setShowBook(false);
+    setIsQuitting(true);
     const scene2Video = scene2VideoRef.current;
 
-    if (blinkOverlay) {
-      gsap.to(blinkOverlay, {
-        opacity: 1,
-        duration: 0.15,
-        ease: "power2.out",
-        onComplete: () => {
-          if (scene2Video) {
-            scene2Video.style.display = "none";
-          }
-          gsap.to(blinkOverlay, {
-            opacity: 0,
-            duration: 0.15,
-            ease: "power2.in",
-            delay: 0.1,
-            onComplete: () => {
-              setShowBook(true);
-            },
+    if (scene2Video) {
+      const blinkOverlay = blinkOverlayRef.current;
+
+      if (blinkOverlay) {
+        gsap.to(blinkOverlay, {
+          opacity: 1,
+          duration: 0.15,
+          ease: "power2.out",
+          onComplete: () => {
+            scene2Video.style.display = "block";
+            scene2Video.style.opacity = "0";
+            scene2Video.loop = false;
+            scene2Video.currentTime = 0;
+            scene2Video.playbackRate = 1;
+
+            scene2Video.play().then(() => {
+              gsap.to(blinkOverlay, {
+                opacity: 0,
+                duration: 0.15,
+                ease: "power2.in",
+                delay: 0.1,
+                onComplete: () => {
+                  gsap.to(scene2Video, {
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                  });
+                },
+              });
+            });
+
+            scene2Video.onended = handleScene2End;
+            setCurrentScene(2);
+          },
+        });
+      } else {
+        scene2Video.style.display = "block";
+        scene2Video.style.opacity = "0";
+        scene2Video.loop = false;
+        scene2Video.currentTime = 0;
+        scene2Video.playbackRate = 1;
+
+        scene2Video.play().then(() => {
+          gsap.to(scene2Video, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
           });
-        },
-      });
-    } else {
-      if (scene2Video) {
-        scene2Video.style.display = "none";
+        });
+
+        scene2Video.onended = handleScene2End;
+        setCurrentScene(2);
       }
-      setShowBook(true);
+    }
+  };
+
+  const handleQuitLibrary = () => {
+    setShowBook(false);
+    setIsQuitting(false);
+    setCurrentScene(0);
+    setIsVideoPlaying(false);
+    setShowPlatformAssistant(false);
+
+    const introVideo = introVideoRef.current;
+    const scene1Video = scene1VideoRef.current;
+    const scene2Video = scene2VideoRef.current;
+    const content = contentRef.current;
+    const overlay = overlayRef.current;
+
+    if (introVideo) {
+      introVideo.style.display = "block";
+      introVideo.style.opacity = "1";
+      introVideo.currentTime = 0;
+      introVideo.play();
+    }
+
+    if (scene1Video) {
+      scene1Video.style.display = "none";
+      scene1Video.style.opacity = "0";
+    }
+
+    if (scene2Video) {
+      scene2Video.style.display = "none";
+      scene2Video.style.opacity = "0";
+    }
+
+    if (content) {
+      gsap.set(content, { opacity: 0 });
+      gsap.to(content, {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+    }
+
+    if (overlay) {
+      gsap.set(overlay, { opacity: 0 });
+      gsap.to(overlay, {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      });
     }
   };
 
@@ -309,7 +458,7 @@ const Home: React.FC = () => {
           onComplete={handlePlatformAssistantComplete}
         />
       )}
-      {showBook && <Book onQuit={() => setShowBook(false)} />}
+      {showBook && <Book onQuit={handleBookQuit} />}
     </div>
   );
 };
