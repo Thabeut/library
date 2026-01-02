@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import EnterButton from "../../components/EnterButton/EnterButton";
 import PlatformAssistant from "../../components/PlatformAssistant/PlatformAssistant";
@@ -206,7 +206,7 @@ const Home: React.FC = () => {
       scene2Video.style.opacity = "0";
       scene2Video.loop = false;
       scene2Video.currentTime = 0;
-      scene2Video.playbackRate = 0.7;
+      scene2Video.playbackRate = 1;
 
       scene2Video.play().then(() => {
         gsap.to(scene2Video, {

@@ -106,9 +106,7 @@ const Book: React.FC<BookProps> = ({ onQuit }) => {
   }, []);
 
   const handleQuit = () => {
-    if (onQuit) {
-      onQuit();
-    }
+    onQuit?.();
   };
 
   return (

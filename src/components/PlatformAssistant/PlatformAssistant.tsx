@@ -99,15 +99,11 @@ const PlatformAssistant: React.FC<PlatformAssistantProps> = ({
           ease: "power2.in",
           delay: 0.2,
           onComplete: () => {
-            if (onComplete) {
-              onComplete();
-            }
+            onComplete?.();
           },
         });
       } else {
-        if (onComplete) {
-          onComplete();
-        }
+        onComplete?.();
       }
     }
   };
@@ -123,9 +119,7 @@ const PlatformAssistant: React.FC<PlatformAssistantProps> = ({
       <div className="platform-assistant-overlay"></div>
       <div ref={contentRef} className="platform-assistant-content">
         <div className="platform-assistant-left">
-          <div ref={imageRef} className="platform-assistant-image">
-            {/* Image placeholder - will be replaced with actual image later */}
-          </div>
+          <div ref={imageRef} className="platform-assistant-image"></div>
           <div className="platform-assistant-label">LIBRARY GUIDE</div>
         </div>
         <div className="platform-assistant-right">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "./Loader.css";
 import titleImg from "../../assets/imgs/loader/loader-title.png";
