@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import Loader from "./features/Loader/Loader";
-import Home from "./features/Home/Home";
+import Loader from "./views/Loader/Loader";
+import Home from "./views/Home/Home";
 import "./App.css";
 
 const App: React.FC = () => {

@@ -46,7 +46,6 @@
 }
 
 .book-selection-title {
-  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: rgba(74, 47, 16, 0.9);
@@ -55,7 +54,6 @@
 }
 
 .book-selection-author {
-  font-family: "Inter", sans-serif;
   font-size: 14px;
   color: rgba(74, 47, 16, 0.7);
   margin: 0;

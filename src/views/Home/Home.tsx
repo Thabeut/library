@@ -207,36 +207,65 @@ const Home: React.FC = () => {
 
   const handleBookSelect = (book: BookType) => {
     setSelectedBook(book);
-    setShowBookSelection(false);
     const scene2Video = scene2VideoRef.current;
     const scene1Video = scene1VideoRef.current;
+    const bookSelectionContainer = document.querySelector(
+      ".book-selection-container"
+    ) as HTMLElement;
 
-    if (scene1Video && scene2Video) {
-      gsap.to(scene1Video, {
+    if (bookSelectionContainer) {
+      gsap.to(bookSelectionContainer, {
         opacity: 0,
-        duration: 0.5,
+        duration: 0.4,
         ease: "power2.in",
         onComplete: () => {
-          scene1Video.style.display = "none";
+          setShowBookSelection(false);
+
+          if (scene1Video && scene2Video) {
+            gsap.to(scene1Video, {
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.in",
+              onComplete: () => {
+                scene1Video.style.display = "none";
+              },
+            });
+
+            scene2Video.style.display = "block";
+            scene2Video.style.opacity = "1";
+            scene2Video.loop = false;
+            scene2Video.currentTime = 0;
+            scene2Video.playbackRate = 1;
+            scene2Video.play();
+
+            scene2Video.onended = handleScene2End;
+            setCurrentScene(2);
+          }
         },
       });
+    } else {
+      setShowBookSelection(false);
 
-      scene2Video.style.display = "block";
-      scene2Video.style.opacity = "0.8";
-      scene2Video.loop = false;
-      scene2Video.currentTime = 0;
-      scene2Video.playbackRate = 1;
-
-      scene2Video.play().then(() => {
-        gsap.to(scene2Video, {
-          opacity: 1,
+      if (scene1Video && scene2Video) {
+        gsap.to(scene1Video, {
+          opacity: 0,
           duration: 0.5,
-          ease: "power2.out",
+          ease: "power2.in",
+          onComplete: () => {
+            scene1Video.style.display = "none";
+          },
         });
-      });
 
-      scene2Video.onended = handleScene2End;
-      setCurrentScene(2);
+        scene2Video.style.display = "block";
+        scene2Video.style.opacity = "1";
+        scene2Video.loop = false;
+        scene2Video.currentTime = 0;
+        scene2Video.playbackRate = 1;
+        scene2Video.play();
+
+        scene2Video.onended = handleScene2End;
+        setCurrentScene(2);
+      }
     }
   };
 

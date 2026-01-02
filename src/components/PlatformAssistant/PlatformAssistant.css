@@ -63,7 +63,6 @@
 }
 
 .platform-assistant-label {
-  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: rgba(200, 160, 120, 0.95);
@@ -85,7 +84,6 @@
 }
 
 .platform-assistant-text p {
-  font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.9);
@@ -106,7 +104,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: "Inter", sans-serif;
+
   font-size: 20px;
   color: rgba(255, 255, 255, 0.6);
   display: flex;

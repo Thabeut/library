@@ -17,7 +17,7 @@
   color: #fff;
   border: 2px solid rgba(74, 47, 16, 0.6);
   border-radius: 8px;
-  font-family: "Inter", sans-serif;
+
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -79,7 +79,6 @@
 }
 
 .page-header {
-  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -99,14 +98,13 @@
   position: absolute;
   bottom: 16px;
   right: 24px;
-  font-family: "Inter", sans-serif;
+
   font-size: 14px;
   color: rgba(74, 47, 16, 0.6);
   font-weight: 500;
 }
 
 .book-content h2 {
-  font-family: "Inter", sans-serif;
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 16px;
@@ -115,7 +113,6 @@
 }
 
 .book-content p {
-  font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.7;
   color: #3a3a3a;
@@ -164,7 +161,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: "Inter", sans-serif;
+
   color: #2a2a2a;
 }
 
@@ -231,7 +228,6 @@
 }
 
 .book-quote-text {
-  font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: italic;
   line-height: 1.8;
@@ -240,7 +236,6 @@
 }
 
 .book-quote-author {
-  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: rgba(74, 47, 16, 0.8);
